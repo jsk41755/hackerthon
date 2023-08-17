@@ -1,11 +1,12 @@
-package com.devjeong.myapplication
+package com.devjeong.myapplication.community
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.devjeong.myapplication.R
 
-class MainActivity : AppCompatActivity() {
+class CommunityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_community)
     }
 }

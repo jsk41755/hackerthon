@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.devjeong.myapplication.main.view.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/selectCelebFragment"
+        android:name="com.devjeong.myapplication.main.view.SelectCelebFragment"
+        android:label="SelectCelebFragment"
+        tools:layout="@layout/fragment_select_celeb"/>
+    <fragment
+        android:id="@+id/aiChatFragment"
+        android:name="com.devjeong.myapplication.main.view.AiChatFragment"
+        android:label="fragment_ai_chat"
+        tools:layout="@layout/fragment_ai_chat" />
+
+
+</navigation>
