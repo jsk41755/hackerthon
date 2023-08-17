@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
 
 class ImageAdapter (
@@ -28,7 +29,9 @@ class ImageAdapter (
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.imageView.setImageResource(imageList[position])
+        Glide.with(holder.imageView)
+            .load(imageList[position])
+            .into(holder.imageView)
         if (position == imageList.size-1){
             viewPager2.post(runnable)
         }

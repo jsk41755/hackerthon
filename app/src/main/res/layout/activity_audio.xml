@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/audio_nav_host_fragment">
+        app:layout_constraintBottom_toTopOf="@+id/audioContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/audio_nav_host_fragment"
+        android:id="@+id/audioContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

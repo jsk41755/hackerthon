@@ -8,7 +8,8 @@ import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.databinding.FragmentSelectCelebBinding
 
-class SelectCelebFragment : UtilityBase<FragmentSelectCelebBinding>(R.layout.fragment_select_celeb){
+class SelectCelebFragment
+    : UtilityBase.BaseFragment<FragmentSelectCelebBinding>(R.layout.fragment_select_celeb){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
