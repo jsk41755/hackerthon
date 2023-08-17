@@ -11,15 +11,15 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"/>
     <fragment
-        android:id="@+id/selectCelebFragment"
-        android:name="com.devjeong.myapplication.main.view.SelectCelebFragment"
-        android:label="SelectCelebFragment"
-        tools:layout="@layout/fragment_select_celeb"/>
-    <fragment
         android:id="@+id/aiChatFragment"
         android:name="com.devjeong.myapplication.main.view.AiChatFragment"
         android:label="fragment_ai_chat"
         tools:layout="@layout/fragment_ai_chat" />
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.devjeong.myapplication.main.view.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
 
 
 </navigation>
