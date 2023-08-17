@@ -1,14 +1,13 @@
-package com.devjeong.myapplication.main.view
+package com.devjeong.myapplication.audio
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.R
-import com.devjeong.myapplication.databinding.FragmentSelectCelebBinding
 
-class SelectCelebFragment : UtilityBase<FragmentSelectCelebBinding>(R.layout.fragment_select_celeb){
+class AudioHomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +17,6 @@ class SelectCelebFragment : UtilityBase<FragmentSelectCelebBinding>(R.layout.fra
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_celeb, container, false)
+        return inflater.inflate(R.layout.fragment_audio_home, container, false)
     }
 }
