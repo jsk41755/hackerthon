@@ -101,7 +101,7 @@
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/celebChatBtn"
-                app:layout_constraintEnd_toStartOf="@+id/audioBookBtn">
+                app:layout_constraintEnd_toStartOf="@+id/audioBookLayout2">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="78dp"
@@ -116,7 +116,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/audioBookBtn"
+                android:id="@+id/audioBookLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -126,6 +126,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/myPageBtn">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/audioBookBtn"
                     android:layout_width="78dp"
                     android:layout_height="78dp"
                     android:background="@drawable/rounded_box_shape"/>
@@ -145,7 +146,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/audioBookBtn"
+                app:layout_constraintStart_toEndOf="@+id/audioBookLayout2"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageButton

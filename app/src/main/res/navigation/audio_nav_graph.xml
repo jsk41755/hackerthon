@@ -3,12 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/audio_nav_graph"
-    app:startDestination="@id/audioHomeFragment">
+    app:startDestination="@id/audioBookFragment">
 
     <fragment
         android:id="@+id/audioHomeFragment"
         android:name="com.devjeong.myapplication.audio.AudioHomeFragment"
         android:label="AudioHomeFragment"
         tools:layout="@layout/fragment_audio_home"/>
+    <fragment
+        android:id="@+id/audioBookFragment"
+        android:name="com.devjeong.myapplication.audio.AudioBookFragment"
+        android:label="AudioBookFragment"
+        tools:layout="@layout/fragment_audio_book"/>
 
 </navigation>
