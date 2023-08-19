@@ -3,6 +3,4 @@
 
     <string name="other_celeb">다른 셀럽의 \n커뮤니티도 참여해봐요!</string>
     <string name="other_celeb2">참여율이 높을 수록 셀럽의 순위가 올라 가요!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

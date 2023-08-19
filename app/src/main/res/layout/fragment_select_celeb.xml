@@ -51,20 +51,180 @@
                 android:id="@+id/celebChoice"
                 android:layout_width="match_parent"
                 android:layout_height="450dp"
-                android:orientation="vertical"
+                android:useDefaultMargins="true"
+                android:rowCount="3"
                 android:columnCount="3"
                 app:layout_constraintTop_toBottomOf="@+id/tv2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toTopOf="@+id/selectCelebBtn">
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1">
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/chaeunwoo"/>
 
+                    <TextView
+                        android:text="차은우"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/jeongguk"/>
+
+                    <TextView
+                        android:text="정국"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/vwe"/>
+
+                    <TextView
+                        android:text="뷔"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/sugar"/>
+
+                    <TextView
+                        android:text="슈가"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/jangwonyoung"/>
+
+                    <TextView
+                        android:text="장원영"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/kimchaewon"/>
+
+                    <TextView
+                        android:text="김채원"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/minji"/>
+
+                    <TextView
+                        android:text="민지"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/hani"/>
+
+                    <TextView
+                        android:text="팜하니"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/ria"/>
+
+                    <TextView
+                        android:text="리아"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </GridLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/selectCelebBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_search_shape"
