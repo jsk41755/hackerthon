@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/selectCelebFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -20,6 +20,15 @@
         android:name="com.devjeong.myapplication.main.view.RankingFragment"
         android:label="fragment_ranking"
         tools:layout="@layout/fragment_ranking" />
+    <fragment
+        android:id="@+id/selectCelebFragment"
+        android:name="com.devjeong.myapplication.main.view.SelectCelebFragment"
+        android:label="SelectCelebFragment"
+        tools:layout="@layout/fragment_select_celeb">
+        <action
+            android:id="@+id/action_selectCelebFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"/>
+    </fragment>
 
 
 </navigation>

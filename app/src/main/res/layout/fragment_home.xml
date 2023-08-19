@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="selectCelebName"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,9 +39,10 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/selectCelebNameTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="안녕 승규야,\n나 차은우와 함께 놀아보자"
+                android:text="@{selectCelebName}"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="28sp"

@@ -66,6 +66,7 @@
                     android:layout_columnWeight="1">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebChaeunWoo"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -78,12 +79,14 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+
                     android:gravity="center"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebJeongguk"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -102,6 +105,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebVwe"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -120,6 +124,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebSugar"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -138,6 +143,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebJangwonyong"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -156,6 +162,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebKimchaewon"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -174,6 +181,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebMinji"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -192,6 +200,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebHani"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"
@@ -210,6 +219,7 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectCelebRia"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:civ_border_width="2dp"

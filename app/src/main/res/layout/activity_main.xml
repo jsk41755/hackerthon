@@ -14,13 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment">
+        app:layout_constraintBottom_toTopOf="@+id/mainContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/back_button"
@@ -68,7 +69,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/mainContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
