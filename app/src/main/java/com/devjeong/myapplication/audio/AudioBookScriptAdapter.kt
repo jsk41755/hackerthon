@@ -18,7 +18,7 @@ class AudioBookScriptAdapter(
         val content = contents[position]
         holder.bind(content, position)
         holder.itemView.setOnClickListener {
-            playCallback.invoke(position) // 클릭 이벤트가 발생할 때 playCallback 호출
+            playCallback.invoke(position)
         }
     }
 

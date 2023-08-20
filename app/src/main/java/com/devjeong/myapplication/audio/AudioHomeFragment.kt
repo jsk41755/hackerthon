@@ -1,35 +1,33 @@
 package com.devjeong.myapplication.audio
 
-import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.audio.model.Book
 import com.devjeong.myapplication.databinding.FragmentAudioHomeBinding
-import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class AudioHomeFragment
-    : UtilityBase.BaseFragment<FragmentAudioHomeBinding>(R.layout.fragment_audio_home) {
+    : UtilityBase.BaseFragment<FragmentAudioHomeBinding>(R.layout.fragment_audio_home),
+    AudioBookListAdapter.OnItemClickListener {
 
     private lateinit var viewPager2: ViewPager2
     private lateinit var handler: Handler
     private lateinit var imageList: ArrayList<Int>
-    private lateinit var adapter: ImageAdapter
+    private lateinit var imageAdapter: ImageAdapter
+
     private val viewModel: AudioBookViewModel by activityViewModels()
+    private lateinit var bookListAdapter: AudioBookListAdapter
     override fun FragmentAudioHomeBinding.onCreateView(){
         init()
         setUpTransformer()
@@ -42,10 +40,29 @@ class AudioHomeFragment
             }
         })
 
-
-
+        setupRecyclerView(this@AudioHomeFragment)
+        fetchAndObserveBooks()
     }
 
+    private fun setupRecyclerView(itemClickListener: AudioBookListAdapter.OnItemClickListener) {
+        bookListAdapter = AudioBookListAdapter(emptyList(), itemClickListener) // Initialize with empty list
+        binding.audioBookRecyclerView.adapter = bookListAdapter
+    }
+
+    private fun fetchAndObserveBooks() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.fetchBooks() // Fetch books data from API
+            viewModel.books.collect { bookList ->
+                Log.d("Collect", bookList.toString()) // 데이터 확인하기
+                bookListAdapter.updateData(bookList)
+            }
+        }
+    }
+
+    override fun onItemClick(book: Book) {
+        viewModel.setSelectedBookId(book.id)
+        findNavController().navigate(R.id.action_audioHomeFragment_to_audioBookFragment)
+    }
 
     override fun FragmentAudioHomeBinding.onViewCreated(){
         handler.postDelayed(runnable, 2000)
@@ -80,9 +97,9 @@ class AudioHomeFragment
         imageList.add(R.drawable.camellia_flower)
         imageList.add(R.drawable.granlagan)
 
-        adapter = ImageAdapter(imageList, viewPager2)
+        imageAdapter = ImageAdapter(imageList, viewPager2)
 
-        viewPager2.adapter = adapter
+        viewPager2.adapter = imageAdapter
         viewPager2.offscreenPageLimit = 3
         viewPager2.clipToPadding = false
         viewPager2.clipChildren = false

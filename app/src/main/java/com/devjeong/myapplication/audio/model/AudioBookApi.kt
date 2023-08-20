@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface AudioBookApi {
     @GET("books")
-    suspend fun getBooks(): Response<List<Book>>
+    suspend fun getBooks(): Response<BookListApiResponse>
 
     @GET("book/{id}")
     suspend fun getAudioBookScript(@Path("id") id: Int): Response<BookAudioApiResponse>

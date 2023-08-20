@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/audio_nav_graph"
-    app:startDestination="@id/audioBookFragment">
+    app:startDestination="@id/audioHomeFragment">
 
     <fragment
         android:id="@+id/audioHomeFragment"
         android:name="com.devjeong.myapplication.audio.AudioHomeFragment"
         android:label="AudioHomeFragment"
-        tools:layout="@layout/fragment_audio_home"/>
+        tools:layout="@layout/fragment_audio_home">
+        <action
+            android:id="@+id/action_audioHomeFragment_to_audioBookFragment"
+            app:destination="@+id/audioBookFragment">
+            <argument
+                android:name="bookId"
+                app:argType="integer"/>
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/audioBookFragment"
         android:name="com.devjeong.myapplication.audio.AudioBookFragment"

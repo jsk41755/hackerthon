@@ -27,7 +27,6 @@ class AudioBookFragment
     : UtilityBase.BaseFragment<FragmentAudioBookBinding>(R.layout.fragment_audio_book) {
 
     private val viewModel: AudioBookViewModel by activityViewModels()
-    //private val celebViewModel: SelectCelebViewModel by activityViewModels()
     private lateinit var adapter: AudioBookScriptAdapter
 
     private lateinit var player: ExoPlayer
@@ -93,8 +92,11 @@ class AudioBookFragment
             }
         }
 
-        val bookId = 2
-        viewModel.fetchBookScript(bookId)
+        lifecycleScope.launch{
+            viewModel.selectedBookId.collect{bookId ->
+                viewModel.fetchBookScript(bookId)
+            }
+        }
     }
 
     private fun fetchAudioAndPlay(position: Int) {

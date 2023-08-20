@@ -1,5 +1,11 @@
 package com.devjeong.myapplication.audio.model
 
+data class BookListApiResponse(
+    val code: Int,
+    val message: String,
+    val data: List<Book>
+)
+
 data class Book(
     val id: Int,
     val views: Int,
