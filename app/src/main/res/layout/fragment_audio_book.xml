@@ -9,6 +9,12 @@
         <variable
             name="AudioBookViewModel"
             type="com.devjeong.myapplication.audio.AudioBookViewModel" />
+        <variable
+            name="audioBookName"
+            type="String" />
+        <variable
+            name="audioBookAuthor"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +48,8 @@
                 android:id="@+id/audioBookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="어린왕자"
+                android:text="@{audioBookName}"
+                android:hint="어린왕자"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -50,13 +57,14 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/audioBookImg"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/audioBookAuthor"/>
+                app:layout_constraintBottom_toTopOf="@+id/audioBookAuthorTxt"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/audioBookAuthor"
+                android:id="@+id/audioBookAuthorTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="저자 : 생택쥐페리"
+                android:text="@{audioBookAuthor}"
+                android:hint="저자: 생택쥐페리"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:layout_marginStart="10dp"
@@ -73,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                app:layout_constraintStart_toEndOf="@+id/audioBookAuthor"
+                app:layout_constraintStart_toEndOf="@+id/audioBookAuthorTxt"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/exo_pause"/>

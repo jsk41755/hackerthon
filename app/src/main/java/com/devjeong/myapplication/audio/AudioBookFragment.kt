@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.audio.model.BookAudioScript
 import com.devjeong.myapplication.audio.model.fetchAudioUrl
 import com.devjeong.myapplication.databinding.FragmentAudioBookBinding
 import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
@@ -21,6 +22,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AudioBookFragment
@@ -69,14 +71,6 @@ class AudioBookFragment
         binding.audioBookScriptRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.audioBookScriptRecyclerView.adapter = adapter
 
-        /*lifecycleScope.launch {
-            viewModel.audioBookScript.collect { audioBookScriptList ->
-                val contents = audioBookScriptList.flatMap { it.contents }
-                adapter = AudioBookScriptAdapter(contents)
-                binding.audioBookScriptRecyclerView.adapter = adapter
-                adapter.notifyDataSetChanged()
-            }
-        }*/
         binding.exoPause.setOnClickListener {
             player.pause()
         }
@@ -97,6 +91,17 @@ class AudioBookFragment
                 viewModel.fetchBookScript(bookId)
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.audioBookScript.collect { audioBookScriptList ->
+                if (audioBookScriptList.isNotEmpty()) {
+                    val firstBook = audioBookScriptList.first()
+                    binding.audioBookName = firstBook.title
+                    binding.audioBookAuthor = "저자: ${firstBook.author}"
+                }
+            }
+        }
+
     }
 
     private fun fetchAudioAndPlay(position: Int) {
