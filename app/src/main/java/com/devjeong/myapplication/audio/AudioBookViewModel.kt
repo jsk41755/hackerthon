@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.lang.Thread.State
 
 
 class AudioBookViewModel :  ViewModel() {
@@ -21,6 +22,10 @@ class AudioBookViewModel :  ViewModel() {
 
     private val _audioBookScript = MutableStateFlow<List<BookAudioScript>>(emptyList())
     val audioBookScript: StateFlow<List<BookAudioScript>> = _audioBookScript
+
+    private val _celebName = MutableStateFlow<String>("")
+    val celebName: StateFlow<String>
+        get() = _celebName
 
     suspend fun fetchBooks() {
         val response = RetrofitBuilder.audioBookApi.getBooks()
@@ -32,6 +37,10 @@ class AudioBookViewModel :  ViewModel() {
         } else {
             // Handle error
         }
+    }
+
+    fun updateStringValue(celebName: String) {
+        _celebName.value = celebName
     }
 
     fun fetchBookScript(bookId: Int) {

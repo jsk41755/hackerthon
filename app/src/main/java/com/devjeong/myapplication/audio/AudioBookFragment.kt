@@ -2,6 +2,7 @@ package com.devjeong.myapplication.audio
 
 import android.media.AudioFocusRequest
 import android.media.AudioManager
+import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
@@ -15,6 +16,7 @@ import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.audio.model.fetchAudioUrl
 import com.devjeong.myapplication.databinding.FragmentAudioBookBinding
+import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -25,12 +27,13 @@ class AudioBookFragment
     : UtilityBase.BaseFragment<FragmentAudioBookBinding>(R.layout.fragment_audio_book) {
 
     private val viewModel: AudioBookViewModel by activityViewModels()
+    //private val celebViewModel: SelectCelebViewModel by activityViewModels()
     private lateinit var adapter: AudioBookScriptAdapter
 
     private lateinit var player: ExoPlayer
     private var playbackPosition: Int = 0
 
-    private val speaker: String = "vyuna"
+    private lateinit var speaker: String
     private var selectNum : Int = 2
     private var autoPlayHandler: Handler? = null
     private var isAutoPlaying: Boolean = false
@@ -39,6 +42,22 @@ class AudioBookFragment
     override fun FragmentAudioBookBinding.onCreateView(){
         binding.lifecycleOwner = viewLifecycleOwner
         binding.audioBookViewModel = viewModel
+
+        lifecycleScope.launch {
+            viewModel.celebName.collect{
+                speaker = when (it) {
+                    "CHAEUNWOO" -> "neunwoo"
+                    "JEONGGUK" -> "njonghyun"
+                    "VWE" -> "njoonyoung"
+                    "SUGAR" -> "nkyungtae"
+                    "JANGWONYOUNG" -> "nyejin"
+                    "KIMCHAEWON" -> "mijin"
+                    "MINJI" -> "mijin"
+                    "HANI" -> "nyejin"
+                    else -> "vyuna"
+                }
+            }
+        }
 
         player = ExoPlayer.Builder(requireContext()).build()
 

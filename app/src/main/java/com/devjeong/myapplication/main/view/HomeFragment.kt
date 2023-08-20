@@ -1,11 +1,13 @@
 package com.devjeong.myapplication.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.audio.AudioActivity
 import com.devjeong.myapplication.databinding.FragmentHomeBinding
 import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
 import kotlinx.coroutines.launch
@@ -56,6 +58,12 @@ class HomeFragment
                 }
 
             }
+        }
+
+        binding.audioBookBtn.setOnClickListener{
+            val intent = Intent(requireContext(), AudioActivity::class.java)
+            intent.putExtra("celebName", viewModel.selectedCelebName.value)
+            startActivity(intent)
         }
     }
 

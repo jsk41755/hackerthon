@@ -1,12 +1,16 @@
 package com.devjeong.myapplication.audio
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -15,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.databinding.FragmentAudioHomeBinding
+import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
 import kotlin.math.abs
 
 class AudioHomeFragment
@@ -24,7 +29,7 @@ class AudioHomeFragment
     private lateinit var handler: Handler
     private lateinit var imageList: ArrayList<Int>
     private lateinit var adapter: ImageAdapter
-
+    private val viewModel: AudioBookViewModel by activityViewModels()
     override fun FragmentAudioHomeBinding.onCreateView(){
         init()
         setUpTransformer()
@@ -36,6 +41,9 @@ class AudioHomeFragment
                 handler.postDelayed(runnable, 2000)
             }
         })
+
+
+
     }
 
 
