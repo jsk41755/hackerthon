@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -32,7 +33,6 @@ class AudioBookFragment
     private val speaker: String = "vyuna"
     private var selectNum : Int = 2
     private var autoPlayHandler: Handler? = null
-    private val autoPlayDelay: Long = 5000 // 5 seconds
     private var isAutoPlaying: Boolean = false
 
 
@@ -40,9 +40,8 @@ class AudioBookFragment
         binding.lifecycleOwner = viewLifecycleOwner
         binding.audioBookViewModel = viewModel
 
-        player = SimpleExoPlayer.Builder(requireContext()).build()
+        player = ExoPlayer.Builder(requireContext()).build()
 
-        //adapter = AudioBookScriptAdapter(emptyList())
         adapter = AudioBookScriptAdapter(emptyList()) { position ->
             playbackPosition = position
             fetchAudioAndPlay(playbackPosition)
@@ -60,11 +59,18 @@ class AudioBookFragment
                 adapter.notifyDataSetChanged()
             }
         }*/
+        binding.exoPause.setOnClickListener {
+            player.pause()
+        }
+
+        binding.exoPlay.setOnClickListener {
+            player.play()
+        }
 
         lifecycleScope.launch {
             viewModel.audioBookScript.collect { audioBookScriptList ->
                 val contents = audioBookScriptList.flatMap { it.contents }
-                adapter.updateContents(contents) // Adapter의 updateContents 메서드 호출
+                adapter.updateContents(contents)
             }
         }
 
@@ -75,7 +81,6 @@ class AudioBookFragment
     private fun fetchAudioAndPlay(position: Int) {
         val content = adapter.getItem(position)
 
-        // Create a new background thread
         val backgroundThread = HandlerThread("AudioFetchThread")
         backgroundThread.start()
 
@@ -84,7 +89,6 @@ class AudioBookFragment
         backgroundHandler.post {
             val audioUrl = fetchAudioUrl(requireContext(), content, speaker)
 
-            // Use the main thread to play the audio
             Handler(Looper.getMainLooper()).post {
                 if (audioUrl.isNotEmpty()) {
                     val mediaItem = MediaItem.fromUri(audioUrl)
@@ -103,18 +107,52 @@ class AudioBookFragment
             override fun onPlaybackStateChanged(state: Int) {
                 if (state == Player.STATE_ENDED) {
                     if (isAutoPlaying && playbackPosition < adapter.itemCount - 1) {
-                        // Move to the next item and play
                         playbackPosition++
                         fetchAudioAndPlay(playbackPosition)
+                        scrollToPositionCentered(playbackPosition)
                     } else {
-                        // Playback has finished, reset auto play
                         isAutoPlaying = false
                     }
                 }
             }
 
-            // ... (다른 콜백 메서드들)
         })
+    }
+
+    private fun scrollToPositionCentered(position: Int) {
+        val layoutManager = binding.audioBookScriptRecyclerView.layoutManager as LinearLayoutManager
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+        val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+
+        if (position in firstVisibleItemPosition..lastVisibleItemPosition) {
+            val childView = binding.audioBookScriptRecyclerView.getChildAt(position - firstVisibleItemPosition)
+            val centerY = binding.audioBookScriptRecyclerView.height / 2
+            val itemTop = childView.top
+            val scrollToY = itemTop - centerY + childView.height / 2
+            binding.audioBookScriptRecyclerView.smoothScrollBy(0, scrollToY)
+        } else {
+            binding.audioBookScriptRecyclerView.scrollToPosition(position)
+            binding.audioBookScriptRecyclerView.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+                override fun onLayoutChange(
+                    v: View?,
+                    left: Int,
+                    top: Int,
+                    right: Int,
+                    bottom: Int,
+                    oldLeft: Int,
+                    oldTop: Int,
+                    oldRight: Int,
+                    oldBottom: Int
+                ) {
+                    binding.audioBookScriptRecyclerView.removeOnLayoutChangeListener(this)
+                    val childView = layoutManager.findViewByPosition(position)
+                    val centerY = binding.audioBookScriptRecyclerView.height / 2
+                    val itemTop = childView?.top ?: 0
+                    val scrollToY = itemTop - centerY + (childView?.height ?: 0) / 2
+                    binding.audioBookScriptRecyclerView.smoothScrollBy(0, scrollToY)
+                }
+            })
+        }
     }
 
     override fun onDestroyView() {

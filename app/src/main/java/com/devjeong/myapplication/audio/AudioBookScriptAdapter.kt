@@ -1,5 +1,6 @@
 package com.devjeong.myapplication.audio
 
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -64,9 +65,13 @@ class AudioBookScriptAdapter(
 
             binding.audioBookScript.setTextColor(
                 if (position == playingPosition) {
-                    ContextCompat.getColor(itemView.context, R.color.white)
+                    ContextCompat.getColor(itemView.context, R.color.white).also {
+                        binding.audioBookScript.setTypeface(null, Typeface.BOLD)
+                    }
                 } else {
-                    ContextCompat.getColor(itemView.context, R.color.black)
+                    ContextCompat.getColor(itemView.context, R.color.imy_text_gray).also {
+                        binding.audioBookScript.setTypeface(null, Typeface.NORMAL)
+                    }
                 }
             )
         }
