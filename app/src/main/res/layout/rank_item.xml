@@ -13,22 +13,23 @@
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/celebProfile"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/celebProfile"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/baseline_person_24"
+        android:src="@drawable/jeongguk"
         app:tint="@color/black"
-        app:civ_border_width="2dp"
         app:civ_border_color="#D7DAE3"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rankItemNum"
-        app:layout_constraintEnd_toStartOf="@+id/rankItemLinearLayout1" />
+        app:layout_constraintEnd_toStartOf="@+id/rankItemLinearLayout1"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/rankItemLinearLayout1"
@@ -60,9 +61,10 @@
         android:text="1"
         android:textSize="21sp"
         android:drawableStart="@drawable/popularity_rank"
-        android:drawableTint="@color/black"
+        android:drawableTint="@color/myCelebThinPink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/myCelebThinPink"
         app:layout_constraintStart_toEndOf="@+id/rankItemLinearLayout1"
         app:layout_constraintEnd_toStartOf="@id/rankItemTrash"
         app:layout_constraintTop_toTopOf="parent"
@@ -71,6 +73,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/rankItemTrash"
         android:text="3875"
+        android:drawablePadding="5dp"
         android:drawableEnd="@drawable/circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

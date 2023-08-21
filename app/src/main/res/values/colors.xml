@@ -14,4 +14,5 @@
     <color name="myCelebTextHint">#7E7E83</color>
     <color name="myCelebBoxBackground">#ECECF5</color>
     <color name="myCelebTextBlack">#111111</color>
+    <color name="myCelebPurple">#A082F4</color>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background: Full image -->
+    <item
+        android:drawable="@drawable/ranking"
+        android:gravity="fill" />
+
+    <!-- Foreground: 3/4 cropped image -->
+    <item
+        android:drawable="@drawable/ranking"
+        android:gravity="fill_vertical"
+        android:top="0dp"
+        android:bottom="-230dp" /> <!-- Adjust this value as needed -->
+</layer-list>
