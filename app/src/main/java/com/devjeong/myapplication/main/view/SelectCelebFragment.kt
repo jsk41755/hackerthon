@@ -2,6 +2,7 @@ package com.devjeong.myapplication.main.view
 
 import android.graphics.Color
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -28,11 +29,11 @@ class SelectCelebFragment
             SelectCelebModel.JEONGGUK to binding.selectCelebJeongguk,
             SelectCelebModel.VWE to binding.selectCelebVwe,
             SelectCelebModel.SUGAR to binding.selectCelebSugar,
-            SelectCelebModel.JANGWONYOUNG to binding.selectCelebJangwonyong,
-            SelectCelebModel.KIMCHAEWON to binding.selectCelebKimchaewon,
-            SelectCelebModel.MINJI to binding.selectCelebMinji,
+            SelectCelebModel.YEJI to binding.selectCelebYeji,
+            SelectCelebModel.YUNA to binding.selectCelebYuna,
+            SelectCelebModel.KYUNGLEE to binding.selectCelebKyunglee,
             SelectCelebModel.HANI to binding.selectCelebHani,
-            SelectCelebModel.RIA to binding.selectCelebRia
+            SelectCelebModel.DANIEL to binding.selectCelebDaniel
         )
 
         for ((celeb, button) in celebButtons) {
@@ -54,15 +55,17 @@ class SelectCelebFragment
             SelectCelebModel.JEONGGUK -> binding.selectCelebJeongguk
             SelectCelebModel.VWE -> binding.selectCelebVwe
             SelectCelebModel.SUGAR -> binding.selectCelebSugar
-            SelectCelebModel.JANGWONYOUNG -> binding.selectCelebJangwonyong
-            SelectCelebModel.KIMCHAEWON -> binding.selectCelebKimchaewon
-            SelectCelebModel.MINJI -> binding.selectCelebMinji
+            SelectCelebModel.YEJI -> binding.selectCelebYeji
+            SelectCelebModel.YUNA -> binding.selectCelebYuna
+            SelectCelebModel.KYUNGLEE -> binding.selectCelebKyunglee
             SelectCelebModel.HANI -> binding.selectCelebHani
-            SelectCelebModel.RIA -> binding.selectCelebRia
+            SelectCelebModel.DANIEL -> binding.selectCelebDaniel
         }
 
-        selectedCelebButton?.borderColor = Color.BLACK
-        clickedButton.borderColor = Color.YELLOW
+        selectedCelebButton?.borderColor = Color.TRANSPARENT
+        selectedCelebButton?.borderWidth = 0
+        clickedButton.borderWidth = 12
+        clickedButton.borderColor = ContextCompat.getColor(requireContext(), R.color.myCelebThinPink)
 
         selectedCelebButton = clickedButton
     }

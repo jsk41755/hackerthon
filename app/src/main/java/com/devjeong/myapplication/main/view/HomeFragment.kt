@@ -53,7 +53,7 @@ class HomeFragment
                 }
 
                 if (celebName.isNotEmpty()) {
-                    val message = getString(R.string.welcome_message, celebNameRe)
+                    val message = getString(R.string.welcome_message)
                     binding.selectCelebName = message
                 }
 

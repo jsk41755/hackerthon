@@ -17,14 +17,21 @@
                 android:id="@+id/celebSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:queryBackground="@null"
                 android:background="@drawable/rounded_search_shape"
+                android:backgroundTint="@color/myCelebBoxBackground"
                 app:iconifiedByDefault="false"
                 app:queryHint="원하는 셀럽을 검색해봐요"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColorHint="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv1"/>
 
             <TextView
                 android:id="@+id/tv1"
-                android:text="어떤 셀럽을 가장 좋아하시나요?"
+                android:text="*어떤 셀럽을 가장 좋아하시나요?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -38,6 +45,7 @@
             <TextView
                 android:id="@+id/tv2"
                 android:text="나만의 셀럽과 소통하면서 응원해 보세요."
+                android:textColor="@color/myCelebTextHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -69,7 +77,6 @@
                         android:id="@+id/selectCelebChaeunWoo"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
                         android:src="@drawable/chaeunwoo"/>
 
                     <TextView
@@ -89,7 +96,6 @@
                         android:id="@+id/selectCelebJeongguk"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
                         android:src="@drawable/jeongguk"/>
 
                     <TextView
@@ -108,7 +114,6 @@
                         android:id="@+id/selectCelebVwe"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
                         android:src="@drawable/vwe"/>
 
                     <TextView
@@ -127,7 +132,6 @@
                         android:id="@+id/selectCelebSugar"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
                         android:src="@drawable/sugar"/>
 
                     <TextView
@@ -143,14 +147,13 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/selectCelebJangwonyong"
+                        android:id="@+id/selectCelebYeji"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/jangwonyoung"/>
+                        android:src="@drawable/yeji"/>
 
                     <TextView
-                        android:text="장원영"
+                        android:text="예지"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -162,14 +165,13 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/selectCelebKimchaewon"
+                        android:id="@+id/selectCelebYuna"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/kimchaewon"/>
+                        android:src="@drawable/yuna"/>
 
                     <TextView
-                        android:text="김채원"
+                        android:text="유나"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -181,11 +183,10 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/selectCelebMinji"
+                        android:id="@+id/selectCelebKyunglee"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/minji"/>
+                        android:src="@drawable/kyunglee"/>
 
                     <TextView
                         android:text="민지"
@@ -203,11 +204,10 @@
                         android:id="@+id/selectCelebHani"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
                         android:src="@drawable/hani"/>
 
                     <TextView
-                        android:text="팜하니"
+                        android:text="하니"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -219,19 +219,27 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/selectCelebRia"
+                        android:id="@+id/selectCelebDaniel"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/ria"/>
+                        android:src="@drawable/daniel"/>
 
                     <TextView
-                        android:text="리아"
+                        android:text="다니엘"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </GridLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/imy_text_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/celebChoice"
+                app:layout_constraintBottom_toTopOf="@+id/selectCelebBtn"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectCelebBtn"
@@ -239,6 +247,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_search_shape"
                 android:text="선택완료"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/myCelebHotPink"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 app:layout_constraintTop_toBottomOf="@+id/celebChoice"

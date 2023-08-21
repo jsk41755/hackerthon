@@ -9,5 +9,9 @@
     <color name="imy_text">#43D681</color>
     <color name="imy_chart">#7EFF06</color>
     <color name="imy_chart_gray">#D9D9D9</color>
-    <color name="imy_toolbar_white">#FFFFFF</color>
+    <color name="myCelebHotPink">#FF009D</color>
+    <color name="myCelebThinPink">#FF8CD3</color>
+    <color name="myCelebTextHint">#7E7E83</color>
+    <color name="myCelebBoxBackground">#ECECF5</color>
+    <color name="myCelebTextBlack">#111111</color>
 </resources>
