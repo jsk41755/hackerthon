@@ -13,10 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/audioCardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="121dp"
+            android:layout_height="151dp"
+            android:gravity="center"
+            android:background="@drawable/book_item_border"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,9 +29,9 @@
                 android:layout_width="120dp"
                 android:layout_height="150dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/granlagan"
-                android:scaleType="fitXY" />
-        </com.google.android.material.card.MaterialCardView>
+                android:scaleType="fitXY"
+                android:background="@drawable/last_leaf" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/audioBookName"

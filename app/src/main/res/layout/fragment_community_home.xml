@@ -7,7 +7,7 @@
     android:padding="20dp"
     tools:context=".community.CommunityHomeFragment">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/communityInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,23 +17,48 @@
         android:padding="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/communityTxt1">
 
-        <TextView
-            android:textSize="18sp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/communityTxt3"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/other_celeb" />
 
-        <TextView
-            android:textSize="15sp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/communityTxt4"
+            android:textSize="12sp"
             android:textColor="@color/white"
-            android:layout_width="match_parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/other_celeb2" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:text="@string/other_celeb2"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/communityTxt3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/speech_bubble"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/communityTxt4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/communityTxt1"

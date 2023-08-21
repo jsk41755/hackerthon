@@ -79,7 +79,7 @@ class AudioHomeFragment
 
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(170))
+        transformer.addTransformer(MarginPageTransformer(150))
         transformer.addTransformer{ page, position ->
             val r = 1- abs(position)
             page.scaleY = 0.85f + r * 0.14f
@@ -93,9 +93,15 @@ class AudioHomeFragment
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
 
+        imageList.add(R.drawable.wild_man)
+        imageList.add(R.drawable.star_book)
         imageList.add(R.drawable.little_prince)
         imageList.add(R.drawable.camellia_flower)
-        imageList.add(R.drawable.granlagan)
+        imageList.add(R.drawable.buckwheat_flowers)
+        imageList.add(R.drawable.hangul)
+        imageList.add(R.drawable.last_leaf)
+        imageList.add(R.drawable.rich_and_the_donkey)
+        imageList.add(R.drawable.shower)
 
         imageAdapter = ImageAdapter(imageList, viewPager2)
 
