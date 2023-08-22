@@ -93,12 +93,11 @@ class AudioHomeFragment
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
 
+        imageList.add(R.drawable.camellia_flower)
         imageList.add(R.drawable.wild_man)
         imageList.add(R.drawable.star_book)
         imageList.add(R.drawable.little_prince)
-        imageList.add(R.drawable.camellia_flower)
         imageList.add(R.drawable.buckwheat_flowers)
-        imageList.add(R.drawable.hangul)
         imageList.add(R.drawable.last_leaf)
         imageList.add(R.drawable.rich_and_the_donkey)
         imageList.add(R.drawable.shower)

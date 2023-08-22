@@ -45,6 +45,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/celebName"
             android:text="정국"
+            android:textColor="@color/myCelebTextHint"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -53,6 +55,7 @@
             android:id="@+id/celebNameContent"
             android:layout_marginTop="8dp"
             android:text="정국한테 치인 사람 다 모여라!"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="15sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -61,6 +64,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/celebNameTag"
             android:text="#국이 덕질에 진심인 사람들의 모임"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/myCelebTextHint"
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -20,6 +20,7 @@
         <TextView
             android:id="@+id/rankTxt1"
             android:text="마이 셀럽 랭킹"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -60,6 +61,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/myCelebRank"
                 android:text="6위"
+                android:fontFamily="@font/pretendard_medium"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
@@ -73,6 +75,7 @@
                 android:id="@+id/myCelebRankNum"
                 android:text="1"
                 android:textSize="15sp"
+                android:fontFamily="@font/pretendard_medium"
                 android:textColor="@color/myCelebHotPink"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,6 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="차은우"
+                android:fontFamily="@font/pretendard_medium"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -101,6 +105,7 @@
                 android:id="@+id/myCelebNick"
                 android:text="#연하 #20대 #동안"
                 android:layout_width="0dp"
+                android:fontFamily="@font/pretendard_medium"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="15sp"
@@ -109,7 +114,8 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:text="2543"
+                android:text="2543K"
+                android:fontFamily="@font/pretendard_medium"
                 android:drawableEnd="@drawable/circle"
                 android:textColor="@color/white"
                 android:drawablePadding="5dp"
@@ -140,6 +146,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="전체 랭킹"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
@@ -151,6 +158,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_search_shape"
+            android:backgroundTint="@color/myCelebBoxBackground"
+            app:queryBackground="@null"
             android:layout_marginTop="10dp"
             app:iconifiedByDefault="false"
             app:queryHint="원하는 셀럽을 검색해봐요"
@@ -160,7 +169,10 @@
 
         <TextView
             android:id="@+id/rankTxt2"
-            android:text="높은 참여율순"
+            android:text="높은 점수순"
+            android:textSize="15sp"
+            android:textColor="@color/myCelebThinPink"
+            android:fontFamily="@font/pretendard_medium"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_keyboard_arrow_down_24"
-            android:tint="@color/black"
+            android:tint="@color/myCelebThinPink"
             android:layout_marginTop="10dp"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toBottomOf="@+id/communityCelebSearch"

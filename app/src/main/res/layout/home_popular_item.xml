@@ -35,8 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="*은우와 가장 어울리는 책은?"
+                android:fontFamily="@font/pretendard_medium"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="8dp"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="@color/myCelebTextBlack" />
@@ -46,7 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="나만의 셀럽의 목소리와 가장\n맞는 책을 추천해요"
-                android:layout_marginStart="5dp"
+                android:fontFamily="@font/pretendard_medium"
+                android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:textSize="12sp"
                 android:textColor="@color/myCelebTextHint" />

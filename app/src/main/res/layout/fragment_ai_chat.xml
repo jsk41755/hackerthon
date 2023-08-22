@@ -135,6 +135,8 @@
                         android:background="@drawable/rounded_box_shape"
                         android:backgroundTint="@color/myCelebHotPink"
                         android:text="전송"
+                        android:fontFamily="@font/pretendard"
+                        android:textSize="16sp"
                         android:textColor="@android:color/white" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

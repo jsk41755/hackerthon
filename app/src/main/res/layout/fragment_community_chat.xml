@@ -74,12 +74,12 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:paddingStart="10dp"
+                        android:paddingStart="15dp"
                         android:layout_weight=".5"
                         android:background="@drawable/rounded_box_shape"
                         android:backgroundTint="@color/white"
                         android:layout_gravity="center_vertical"
-                        android:hint="당신의 샐럽과 자유롭게 대화해보세요"
+                        android:hint="매너를 지키되, 자유롭게 채팅해주세요!"
                         android:textSize="14sp"
                         android:padding="10dp"
                         android:singleLine="true" />
@@ -91,7 +91,9 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/rounded_box_shape"
-                        android:text="Send"
+                        android:backgroundTint="@color/myCelebHotPink"
+                        android:text="등록"
+                        android:fontFamily="@font/pretendard_medium"
                         android:textColor="@android:color/white" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

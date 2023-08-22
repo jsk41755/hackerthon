@@ -44,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{selectCelebName}"
+                android:fontFamily="@font/pretendard_medium"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="셀럽의 인기소식을 확인해 보세요"
                 android:textColor="@color/white"
+                android:fontFamily="@font/pretendard_medium"
                 android:textSize="15sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="20dp"/>
@@ -91,6 +93,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:layout_marginTop="5dp"
                     android:text="샐럽 채팅"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -113,6 +117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:layout_marginTop="5dp"
                     android:text="커뮤니티"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -136,6 +142,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:layout_marginTop="5dp"
                     android:text="오디오북"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -160,6 +168,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:layout_marginTop="5dp"
                     android:text="마이"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -227,6 +237,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rankBtn"
             android:text="*인기소식 확인해 보세요"
             android:textStyle="bold"
+            android:fontFamily="@font/pretendard_medium"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginStart="10dp"
