@@ -1,60 +1,50 @@
 package com.devjeong.myapplication.community
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.devjeong.myapplication.R
+import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.databinding.FragmentCommunityHomeBinding
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CommunityHomeFragment : UtilityBase.BaseFragment<FragmentCommunityHomeBinding>(R.layout.fragment_community_home) {
+    private val communityAdapter = CommunityAdapter()
+    private val viewModel: CommunityViewModel by activityViewModels()
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CommunityHomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CommunityHomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun FragmentCommunityHomeBinding.onViewCreated(){
+        binding.communityRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = communityAdapter
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community_home, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CommunityHomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CommunityHomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.communityData.collect { communityDataList ->
+                communityAdapter.setData(communityDataList)
             }
+        }
+
+        viewModel.fetchCommunityData()
+
+        val text = "*인기 커뮤니티"
+        val spannableString = SpannableString(text)
+
+        val startIndex = text.indexOf("*")
+        val endIndex = startIndex + "*".length
+
+        val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.myCelebHotPink))
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.communityTxt1.text = spannableString
     }
 }

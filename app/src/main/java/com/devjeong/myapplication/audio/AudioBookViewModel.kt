@@ -1,19 +1,15 @@
 package com.devjeong.myapplication.audio
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjeong.myapplication.audio.model.Book
 import com.devjeong.myapplication.audio.model.BookAudioApiResponse
 import com.devjeong.myapplication.audio.model.BookAudioScript
 import com.devjeong.myapplication.audio.model.BookListApiResponse
-import com.devjeong.myapplication.audio.model.RetrofitBuilder
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.devjeong.myapplication.audio.model.AudioBookClient
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.lang.Thread.State
 
 
 class AudioBookViewModel :  ViewModel() {
@@ -35,7 +31,7 @@ class AudioBookViewModel :  ViewModel() {
         get() = _selectedBookId
 
     suspend fun fetchBooks() {
-        val response = RetrofitBuilder.audioBookApi.getBooks()
+        val response = AudioBookClient.audioBookApi.getBooks()
         if (response.isSuccessful) {
             val apiResponse = response.body() as BookListApiResponse
             if (apiResponse != null) {
@@ -58,7 +54,7 @@ class AudioBookViewModel :  ViewModel() {
     fun fetchBookScript(bookId: Int) {
         viewModelScope.launch {
             try {
-                val response = RetrofitBuilder.audioBookApi.getAudioBookScript(bookId)
+                val response = AudioBookClient.audioBookApi.getAudioBookScript(bookId)
                 if (response.isSuccessful) {
                     val apiResponse = response.body() as BookAudioApiResponse
                     _audioBookScript.value = listOf(apiResponse.data)

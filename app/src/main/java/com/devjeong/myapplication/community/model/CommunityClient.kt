@@ -1,4 +1,4 @@
-package com.devjeong.myapplication.audio.model
+package com.devjeong.myapplication.community.model
 
 import com.devjeong.myapplication.BuildConfig
 import okhttp3.OkHttpClient
@@ -8,10 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
-object AudioBookClient {
-    var audioBookApi: AudioBookApi
+object CommunityClient {
+    var communityApi : CommunityApi
 
-    private const val chatServer = BuildConfig.AUDIO_BOOK_API
+    private const val communityServer = BuildConfig.COMMUNITY_RANK_API
     init{
         val client = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -24,12 +24,12 @@ object AudioBookClient {
             .build()
 
         val retrofit= Retrofit.Builder()
-            .baseUrl(chatServer)   //요청 보내는 API 서버 url /로 끝나야 함
+            .baseUrl(communityServer)
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create() )
             .addConverterFactory(GsonConverterFactory.create())//Gson을 역직렬화
             .build()
 
-        audioBookApi=retrofit.create(AudioBookApi::class.java)
+        communityApi=retrofit.create(CommunityApi::class.java)
     }
 }

@@ -24,6 +24,7 @@ android {
         buildConfigField "String", "NAVER_CLOVA_VOICE_API", properties['NAVER_CLOVA_VOICE_API']
         buildConfigField "String", "AUDIO_BOOK_API", properties['AUDIO_BOOK_API']
         buildConfigField "String", "CHATBOT_API", properties['CHATBOT_API']
+        buildConfigField "String", "COMMUNITY_RANK_API", properties['COMMUNITY_RANK_API']
     }
 
     dataBinding {
