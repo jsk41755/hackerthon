@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -9,17 +10,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCeleb"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".audio.AudioActivity"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".community.CommunityActivity"
+            android:name=".community.CommunityChatActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +25,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".audio.AudioActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".community.CommunityActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".tutorial.TutorialActivity"
             android:exported="false" />
         <activity
             android:name=".main.view.MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>
