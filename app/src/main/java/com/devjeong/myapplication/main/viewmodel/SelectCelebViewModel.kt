@@ -8,6 +8,7 @@ import com.devjeong.myapplication.community.model.CountRequest
 import com.devjeong.myapplication.community.model.Rank
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +28,15 @@ class SelectCelebViewModel : ViewModel() {
     private val _rankList = MutableStateFlow<List<Rank>>(emptyList())
     val rankList: StateFlow<List<Rank>> = _rankList
 
+    private val _rankPlace = MutableStateFlow<Int>(0)
+    val rankPlace: StateFlow<Int> get() = _rankPlace
+
+    private val _rankVariance = MutableStateFlow(0)
+    val rankVariance: StateFlow<Int> get() = _rankVariance
+
+    private val _rankDescription = MutableStateFlow("")
+    val rankDescription: StateFlow<String> get() = _rankDescription
+
     fun updateSelectedCelebName(celebName: String) {
         _selectedCelebName.value = celebName
     }
@@ -35,11 +45,18 @@ class SelectCelebViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = CommunityClient.communityApi.getRank()
-                Log.d("fetchRankData", response.isSuccessful.toString())
                 if (response.isSuccessful) {
                     val rankApiResponse = response.body()
                     val rankDataList = rankApiResponse?.data ?: emptyList()
                     _rankList.value = rankDataList
+
+                    val filteredRankPlace = rankDataList.filter { it.celebrityId == selectedCelebNum.value }
+                    val ranks = filteredRankPlace.map { it.rank }
+                    _rankPlace.value = ranks[0]
+                    val variance = filteredRankPlace.map { it.rankMovement }
+                    _rankVariance.value = variance[0]
+                    val description = filteredRankPlace.map { it.celebrityDescription }
+                    _rankDescription.value = description.first()
                 } else {
                     Log.d("fetchRankData", response.isSuccessful.toString())
                 }
@@ -103,4 +120,3 @@ class SelectCelebViewModel : ViewModel() {
     }
 
 }
-

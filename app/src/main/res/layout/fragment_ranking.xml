@@ -10,9 +10,6 @@
         <variable
             name="celebrityRank"
             type="String" />
-        <variable
-            name="celebrityRankMovement"
-            type="String" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:background="@color/black"
+            android:background="@drawable/rank_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -88,14 +85,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/myCelebRankNum"
-                    android:text="@{celebrityRankMovement}"
+                    android:text="1"
                     android:textSize="15sp"
                     android:fontFamily="@font/pretendard_medium"
                     android:textColor="@color/myCelebHotPink"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/popularity_rank"
-                    android:drawableTint="@color/myCelebHotPink"
                     android:layout_marginStart="7dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/myCelebRank"
@@ -131,7 +126,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:text="2543K"
                     android:fontFamily="@font/pretendard_medium"
-                    android:drawableEnd="@drawable/circle"
+                    android:drawableEnd="@drawable/point"
                     android:textColor="@color/white"
                     android:drawablePadding="5dp"
                     android:layout_width="wrap_content"

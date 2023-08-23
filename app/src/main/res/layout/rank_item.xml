@@ -77,11 +77,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/rankItemTrash"
-            android:text="3875"
+            android:text="3875K"
             android:textSize="15sp"
             android:fontFamily="@font/pretendard"
             android:drawablePadding="5dp"
-            android:drawableEnd="@drawable/circle"
+            android:drawableEnd="@drawable/point_null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/rankItemVariance"

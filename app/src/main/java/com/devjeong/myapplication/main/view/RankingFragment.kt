@@ -1,5 +1,6 @@
 package com.devjeong.myapplication.main.view
 
+import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -57,6 +58,34 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.rankPlace.collect{newRankPlace ->
+                binding.celebrityRank = "${newRankPlace}위"
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.rankDescription.collect{newRankDescription ->
+                binding.myCelebNick.text = newRankDescription
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.rankVariance.collect{newRankVariance ->
+                if (newRankVariance > 0){
+                    binding.myCelebRankNum.setCompoundDrawablesWithIntrinsicBounds(R.drawable.popularity_up, 0, 0, 0)
+                    binding.myCelebRankNum.text = newRankVariance.toString()
+                    binding.myCelebRankNum.setTextColor(Color.RED)
+                } else if(newRankVariance == 0){
+                    binding.myCelebRankNum.text = "-"
+                    binding.myCelebRankNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.imy_chart_gray))
+                } else{
+                    var minus = newRankVariance.toString()
+                    minus = minus.replace("-","")
+                    binding.myCelebRankNum.text = minus
+                    binding.myCelebRankNum.setCompoundDrawablesWithIntrinsicBounds(R.drawable.popularity_down, 0, 0, 0)
+                    binding.myCelebRankNum.setTextColor(Color.BLUE)
+                }
+            }
+        }
     }
 
     private fun settingMyCeleb() {
@@ -69,6 +98,7 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
             .placeholder(R.drawable.baseline_person_24)
             .error(R.drawable.baseline_person_24)
             .into(binding.celebProfile)
+
     }
 
     private fun getImageResourceId(id: Int): Int {
