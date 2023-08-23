@@ -13,6 +13,7 @@ import com.devjeong.myapplication.databinding.CommunityItemBinding
 class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHolder>() {
 
     private val communityDataList = mutableListOf<CommunityData>()
+    var onItemClickListener: ((Int) -> Unit)? = null
 
     fun setData(dataList: List<CommunityData>) {
         communityDataList.clear()
@@ -38,6 +39,11 @@ class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHold
     inner class CommunityViewHolder(private val binding: CommunityItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.root.setOnClickListener {
+                onItemClickListener?.invoke(communityDataList[adapterPosition].communityId)
+            }
+        }
         fun bind(data: CommunityData) {
             binding.celebName = data.celebrityName
             binding.celebNameTag = data.description

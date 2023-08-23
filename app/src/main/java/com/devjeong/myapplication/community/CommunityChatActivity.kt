@@ -1,7 +1,9 @@
 package com.devjeong.myapplication.community
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,17 +22,24 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
 
     private lateinit var viewModel : CommunityChatViewModel
     private val communityPagingAdapter by lazy { CommunityPagingAdapter() }
+    private var communityId: Int = -1
+    private lateinit var inputMethodManager: InputMethodManager
 
     override fun ActivityCommunityChatBinding.onCreate(){
-        binding.communityChatRv.adapter = communityPagingAdapter
-        binding.communityChatRv.layoutManager = LinearLayoutManager(this@CommunityChatActivity, LinearLayoutManager.VERTICAL,false)
-        binding.communityChatRv.scrollToPosition(0)
-
         val repository = CommunityPagingRepository()
         val viewModel: CommunityChatViewModel by viewModels { CommentPagingSourceFactory(repository) }
         this@CommunityChatActivity.viewModel = viewModel
 
-        viewModel.searchPost(2)
+        inputMethodManager = this@CommunityChatActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        communityId = intent.getIntExtra("communityId", -1)
+        if (communityId != -1) {
+            viewModel.searchPost(communityId)
+        }
+
+        binding.communityChatRv.adapter = communityPagingAdapter
+        binding.communityChatRv.layoutManager = LinearLayoutManager(this@CommunityChatActivity, LinearLayoutManager.VERTICAL,false)
+        //binding.communityChatRv.scrollToPosition(0)
 
         binding.btnSend.setOnClickListener {
             onCommentSubmitClicked()
@@ -38,14 +47,15 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
 
         viewModel.result.observe(this@CommunityChatActivity, Observer {
             communityPagingAdapter.submitData(lifecycle,it)
-            Log.d("tst55", "호출됐음.")
+            Log.d("tst55", communityPagingAdapter.itemCount.toString())
+            binding.communityChatRv.scrollToPosition(communityPagingAdapter.itemCount-1)
         })
     }
 
     private fun onCommentSubmitClicked() {
         val comment = binding.etMessage.text // 원하는 댓글 내용으로 변경
+        inputMethodManager.hideSoftInputFromWindow(binding.etMessage.windowToken, 0)
         if (binding.etMessage.text.isNotEmpty()) {
-            val communityId = 2 // 원하는 커뮤니티 ID
             lifecycleScope.launch {
                 viewModel.createComment(communityId, comment.toString())
                 communityPagingAdapter.refresh()

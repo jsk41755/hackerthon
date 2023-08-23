@@ -1,5 +1,6 @@
 package com.devjeong.myapplication.community
 
+import android.content.Intent
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -27,6 +28,12 @@ class CommunityHomeFragment : UtilityBase.BaseFragment<FragmentCommunityHomeBind
             viewModel.communityData.collect { communityDataList ->
                 communityAdapter.setData(communityDataList)
             }
+        }
+
+        communityAdapter.onItemClickListener = { communityId ->
+            val intent = Intent(requireContext(), CommunityChatActivity::class.java)
+            intent.putExtra("communityId", communityId)
+            startActivity(intent)
         }
 
         viewModel.fetchCommunityData()

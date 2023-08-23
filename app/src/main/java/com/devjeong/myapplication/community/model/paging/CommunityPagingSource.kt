@@ -7,7 +7,7 @@ import com.devjeong.myapplication.community.model.CommunityApi
 import retrofit2.HttpException
 import java.io.IOException
 
-private const val STARTING_PAGE_INDEX = 100
+private const val STARTING_PAGE_INDEX = 30
 
 class CommunityPagingSource(
     private val communityApi : CommunityApi,
