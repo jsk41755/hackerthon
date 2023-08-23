@@ -2,6 +2,7 @@ package com.devjeong.myapplication.community
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,20 +21,14 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
     private lateinit var viewModel : CommunityChatViewModel
     private val communityPagingAdapter by lazy { CommunityPagingAdapter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_community_chat)
-
+    override fun ActivityCommunityChatBinding.onCreate(){
         binding.communityChatRv.adapter = communityPagingAdapter
-        binding.communityChatRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        binding.communityChatRv.layoutManager = LinearLayoutManager(this@CommunityChatActivity, LinearLayoutManager.VERTICAL,false)
         binding.communityChatRv.scrollToPosition(0)
 
         val repository = CommunityPagingRepository()
-        val viewModelFactory = CommentPagingSourceFactory(repository)
-        viewModel = ViewModelProvider(
-            this,
-            viewModelFactory
-        )[CommunityChatViewModel::class.java]
+        val viewModel: CommunityChatViewModel by viewModels { CommentPagingSourceFactory(repository) }
+        this@CommunityChatActivity.viewModel = viewModel
 
         viewModel.searchPost(2)
 
@@ -41,8 +36,8 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
             onCommentSubmitClicked()
         }
 
-        viewModel.result.observe(this, Observer {
-            communityPagingAdapter.submitData(this.lifecycle,it)
+        viewModel.result.observe(this@CommunityChatActivity, Observer {
+            communityPagingAdapter.submitData(lifecycle,it)
             Log.d("tst55", "호출됐음.")
         })
     }

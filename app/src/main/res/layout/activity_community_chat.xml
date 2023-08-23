@@ -152,7 +152,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_box_shape"
                     android:backgroundTint="@color/myCelebHotPink"
-                    android:text="등록"
+                    android:text="등록ㄱㄱㄱ"
                     android:fontFamily="@font/pretendard_medium"
                     android:textColor="@android:color/white" />
 
