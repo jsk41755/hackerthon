@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:contentDescription="Logo"
-                android:tint="@color/black"
+                app:tint="@color/black"
                 android:src="@drawable/alarm" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

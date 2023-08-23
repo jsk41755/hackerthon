@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
+import com.devjeong.myapplication.community.model.CommunityApiResponse
 import com.devjeong.myapplication.community.model.CommunityData
 import com.devjeong.myapplication.databinding.CommunityItemBinding
 

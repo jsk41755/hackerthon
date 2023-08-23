@@ -2,6 +2,7 @@ package com.devjeong.myapplication.community
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devjeong.myapplication.community.model.CommunityApiResponse
 import com.devjeong.myapplication.community.model.CommunityClient
 import com.devjeong.myapplication.community.model.CommunityData
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,3 +31,5 @@ class CommunityViewModel : ViewModel() {
     }
 
 }
+
+

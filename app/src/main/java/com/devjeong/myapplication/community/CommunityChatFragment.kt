@@ -1,60 +1,67 @@
 package com.devjeong.myapplication.community
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjeong.myapplication.R
+import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.community.model.paging.CommentPagingSourceFactory
+import com.devjeong.myapplication.community.model.paging.CommunityChatViewModel
+import com.devjeong.myapplication.community.model.paging.CommunityPagingAdapter
+import com.devjeong.myapplication.community.model.paging.CommunityPagingRepository
+import com.devjeong.myapplication.databinding.FragmentCommunityChatBinding
+import com.devjeong.myapplication.databinding.FragmentCommunityHomeBinding
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CommunityChatFragment : UtilityBase.BaseFragment<FragmentCommunityChatBinding>(
+    R.layout.fragment_community_chat) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CommunityChatFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CommunityChatFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var viewModel : CommunityChatViewModel
+    private val communityPagingAdapter by lazy { CommunityPagingAdapter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun FragmentCommunityChatBinding.onViewCreated(){
+// 어댑터 연결
+        binding.communityChatRv.adapter = communityPagingAdapter
+        binding.communityChatRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        binding.communityChatRv.scrollToPosition(0)
+
+        val repository = CommunityPagingRepository()
+        val viewModelFactory = CommentPagingSourceFactory(repository)
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        )[CommunityChatViewModel::class.java]
+
+        viewModel.searchPost(2)
+
+        binding.btnSend.setOnClickListener {
+            onCommentSubmitClicked()
         }
+
+        viewModel.result.observe(requireActivity(), Observer {
+            communityPagingAdapter.submitData(requireActivity().lifecycle,it)
+            Log.d("tst55", "호출됐음.")
+        })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community_chat, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CommunityChatFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CommunityChatFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun onCommentSubmitClicked() {
+        val comment = binding.etMessage.text // 원하는 댓글 내용으로 변경
+        if (binding.etMessage.text.isNotEmpty()) {
+            val communityId = 2 // 원하는 커뮤니티 ID
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.createComment(communityId, comment.toString())
+                communityPagingAdapter.refresh()
             }
+            binding.etMessage.text = null
+        }
     }
 }
