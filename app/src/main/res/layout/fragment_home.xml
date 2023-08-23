@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/myCelebChatBackground"
         tools:context=".main.view.MainActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -26,13 +27,20 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintBottom_toTopOf="@+id/btnList">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_gravity="right"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/celeb_change"
+                android:background="@drawable/circle_background"
+                android:padding="4dp"
                 android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:src="@drawable/celeb_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
                 android:layout_width="0dp"
@@ -66,12 +74,13 @@
             android:id="@+id/btnList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintTop_toBottomOf="@+id/mainBanner"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv2">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/celebChatBtn"
@@ -85,6 +94,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/communityBtn">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:src="@drawable/chat_bot_btn"
+                    android:backgroundTint="@color/white"
                     android:layout_width="78dp"
                     android:layout_height="78dp"
                     android:background="@drawable/rounded_box_shape"/>
@@ -109,6 +120,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/audioBookLayout2">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:src="@drawable/community_btn"
+                    android:backgroundTint="@color/white"
                     android:layout_width="78dp"
                     android:layout_height="78dp"
                     android:background="@drawable/rounded_box_shape"/>
@@ -134,6 +147,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/audioBookBtn"
+                    android:src="@drawable/audio_book_btn"
+                    android:backgroundTint="@color/white"
                     android:layout_width="78dp"
                     android:layout_height="78dp"
                     android:background="@drawable/rounded_box_shape"/>
@@ -159,6 +174,8 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:src="@drawable/rank_btn"
+                    android:backgroundTint="@color/white"
                     android:layout_width="78dp"
                     android:layout_height="78dp"
                     android:background="@drawable/rounded_box_shape"/>
@@ -170,78 +187,24 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/pretendard_medium"
                     android:layout_marginTop="5dp"
-                    android:text="마이"/>
+                    android:text="랭킹"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/rankBtn"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:orientation="horizontal"
-            android:background="@drawable/rounded_box_shape"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/btnList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:src="@color/black"
-                android:layout_marginStart="20dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/popularity_rank"
-                android:backgroundTint="@color/black"/>
-
-            <TextView
-                android:id="@+id/rankTxt"
-                android:text="1"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="나의 샐럽의 현재 순위를 확인해 보세요"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_gravity="right|center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/baseline_keyboard_arrow_right_24"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/rankBtn"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/btnList"
+            app:layout_constraintEnd_toEndOf="parent"
             android:text="*인기소식 확인해 보세요"
             android:textStyle="bold"
             android:fontFamily="@font/pretendard_medium"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView

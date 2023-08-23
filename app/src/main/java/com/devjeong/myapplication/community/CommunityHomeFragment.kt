@@ -1,10 +1,16 @@
 package com.devjeong.myapplication.community
 
+import android.content.Context
 import android.content.Intent
+import android.net.wifi.WifiInfo
+import android.net.wifi.WifiManager
+import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +37,7 @@ class CommunityHomeFragment : UtilityBase.BaseFragment<FragmentCommunityHomeBind
         }
 
         communityAdapter.onItemClickListener = { communityId ->
+            viewModel.performCountRequest(getWifiMacAddress(), communityId)
             val intent = Intent(requireContext(), CommunityChatActivity::class.java)
             intent.putExtra("communityId", communityId)
             startActivity(intent)
@@ -47,5 +54,12 @@ class CommunityHomeFragment : UtilityBase.BaseFragment<FragmentCommunityHomeBind
         val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.myCelebHotPink))
         spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.communityTxt1.text = spannableString
+    }
+
+    private fun getWifiMacAddress(): String {
+        val wifiManager = requireContext().applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInfo: WifiInfo = wifiManager.connectionInfo
+        Log.d("wifiInfo", wifiInfo.macAddress)
+        return wifiInfo.macAddress
     }
 }

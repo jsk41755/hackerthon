@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -20,9 +21,17 @@
             android:exported="false"/>
         <activity
             android:name=".audio.AudioActivity"
-            android:exported="false"/>
+            android:exported="false">
+        </activity>
         <activity
             android:name=".community.CommunityActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".tutorial.TutorialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,12 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".tutorial.TutorialActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.view.MainActivity"
-            android:exported="false"></activity>
     </application>
 
 </manifest>

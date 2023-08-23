@@ -32,4 +32,8 @@ data class Comment(
 data class CommentRequest(
     val comment: String
     )
+data class CountRequest(
+    val from: String,
+    val to: Int
+)
 
