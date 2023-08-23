@@ -20,7 +20,7 @@
             android:layout_height="254dp"
             android:orientation="vertical"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/combined_home_drawble"
+            android:background="@drawable/main_banner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,6 +28,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btnList">
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/bt_celebChange"
                 android:layout_gravity="right"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
@@ -51,7 +52,7 @@
                 android:id="@+id/selectCelebNameTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{selectCelebName}"
+                android:text="은우바라기님 안녕하세요,\n셀럽과의 하루를 시작해볼까요?"
                 android:fontFamily="@font/pretendard_medium"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -91,7 +92,7 @@
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/communityBtn">
+                app:layout_constraintEnd_toStartOf="@+id/communityLayout">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/celebChatBtn"
@@ -111,7 +112,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/communityBtn"
+                android:id="@+id/communityLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -121,6 +122,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/audioBookLayout2">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/communityBtn"
                     android:src="@drawable/community_btn"
                     android:backgroundTint="@color/white"
                     android:layout_width="78dp"
@@ -143,7 +145,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/communityBtn"
+                app:layout_constraintStart_toEndOf="@+id/communityLayout"
                 app:layout_constraintEnd_toStartOf="@+id/myPageBtn">
 
                 <androidx.appcompat.widget.AppCompatImageButton

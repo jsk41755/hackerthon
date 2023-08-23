@@ -2,7 +2,11 @@ package com.devjeong.myapplication.audio
 
 import android.os.Handler
 import android.os.Looper
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -29,6 +33,21 @@ class AudioHomeFragment
     private val viewModel: AudioBookViewModel by activityViewModels()
     private lateinit var bookListAdapter: AudioBookListAdapter
     override fun FragmentAudioHomeBinding.onCreateView(){
+        val text = "*인기 오디오"
+        val text2 = "*추천 오디오"
+        val spannableString = SpannableString(text)
+        val spannableString2 = SpannableString(text2)
+
+        val startIndex = text.indexOf("*")
+        val endIndex = startIndex + "*".length
+
+        val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.myCelebHotPink))
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.audioHomeTxt3.text = spannableString
+
+        spannableString2.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.audioHomeTxt1.text = spannableString
+
         init()
         setUpTransformer()
 

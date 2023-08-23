@@ -15,13 +15,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.audio.model.fetchAudioUrl
 import com.devjeong.myapplication.databinding.FragmentAiChatBinding
 import com.devjeong.myapplication.main.model.ChatBotBuilder
 import com.devjeong.myapplication.main.model.Message
+import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
 import com.devjeong.myapplication.util.Constants.OPEN_GOOGLE
 import com.devjeong.myapplication.util.Constants.OPEN_SEARCH
 import com.devjeong.myapplication.util.Constants.RECEIVE_ID
@@ -43,7 +46,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.fragment_ai_chat) {
-
+    private val viewModel: SelectCelebViewModel by activityViewModels()
     private lateinit var speechRecognizer: SpeechRecognizer
     private var textToSpeech: TextToSpeech? = null
 
@@ -71,7 +74,6 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         requestPermission()
         speaker = "vyuna"
 
@@ -115,6 +117,33 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             customBotMessage(helloBotMessage)
             delay(1000)
         }
+
+        val imageResourceId = getImageResourceId(viewModel.selectedCelebNum.value)
+        Glide.with(binding.celebProfile.context)
+            .load(imageResourceId)
+            .placeholder(R.drawable.baseline_person_24)
+            .error(R.drawable.baseline_person_24)
+            .into(binding.celebProfile)
+
+        val mainActivity = requireActivity() as? MainActivity
+        mainActivity?.showBackBtnButton()
+        viewModel.fetchCelebKor(viewModel.selectedCelebNum.value)
+        val celebName = viewModel.selectedCelebKor.value
+        mainActivity?.titleTxt?.text = "AI ${celebName}"
+    }
+
+    private fun getImageResourceId(id: Int): Int {
+        return when (id) {
+            1 -> R.drawable.jeongguk
+            2 -> R.drawable.chaeunwoo
+            3 -> R.drawable.vwe
+            4 -> R.drawable.sugar
+            5 -> R.drawable.yeji
+            6 -> R.drawable.yuna
+            7 -> R.drawable.kyunglee
+            8 -> R.drawable.hani
+            else -> R.drawable.daniel
+        }
     }
 
     private fun clickEvents() {
@@ -124,7 +153,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
         }
         //Scroll back to correct position when user clicks on text view
         binding.etMessage.setOnClickListener {
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 delay(100)
 
                 withContext(Dispatchers.IO) {

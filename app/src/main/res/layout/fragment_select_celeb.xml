@@ -202,7 +202,7 @@
                         android:src="@drawable/kyunglee"/>
 
                     <TextView
-                        android:text="민지"
+                        android:text="경리"
                         android:fontFamily="@font/pretendard_medium"
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"

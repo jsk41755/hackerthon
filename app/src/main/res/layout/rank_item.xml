@@ -67,8 +67,6 @@
             android:text="1"
             android:textSize="18sp"
             android:fontFamily="@font/pretendard"
-            android:drawableStart="@drawable/popularity_rank"
-            android:drawableTint="@color/myCelebThinPink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/myCelebThinPink"

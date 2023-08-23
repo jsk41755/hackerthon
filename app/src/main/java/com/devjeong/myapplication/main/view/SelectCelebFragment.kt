@@ -2,6 +2,9 @@ package com.devjeong.myapplication.main.view
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -18,11 +21,20 @@ class SelectCelebFragment
     private val viewModel: SelectCelebViewModel by activityViewModels()
     private var selectedCelebButton: CircleImageView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun FragmentSelectCelebBinding.onCreateView(){
+        val mainActivity = requireActivity() as? MainActivity
+        mainActivity?.hideBackButton()
+        mainActivity?.titleTxt?.text = "셀럽 선택"
+
+        val text = "*어떤 셀럽을 가장 좋아 하나요?"
+        val spannableString = SpannableString(text)
+
+        val startIndex = text.indexOf("*")
+        val endIndex = startIndex + "*".length
+
+        val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.myCelebHotPink))
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.tv1.text = spannableString
 
         val celebButtons = mapOf(
             SelectCelebModel.CHAEUNWOO to binding.selectCelebChaeunWoo,

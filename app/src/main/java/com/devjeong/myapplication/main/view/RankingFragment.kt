@@ -1,6 +1,10 @@
 package com.devjeong.myapplication.main.view
 
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +31,16 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
     }
 
     override fun FragmentRankingBinding.onViewCreated(){
+        val text = "*전체 랭킹"
+        val spannableString = SpannableString(text)
+
+        val startIndex = text.indexOf("*")
+        val endIndex = startIndex + "*".length
+
+        val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.myCelebHotPink))
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.myCelebRankTxt1.text = spannableString
+
         binding.rvCelebRank.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = rankAdapter

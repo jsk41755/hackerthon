@@ -1,8 +1,12 @@
 package com.devjeong.myapplication.main.view
 
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
@@ -19,7 +23,21 @@ class RankingAdapter (private val rankDataList: List<Rank>) : RecyclerView.Adapt
             binding.rankItemNum.text = data.rank.toString()
             binding.tvCelebName.text = data.celebrityName
             binding.tvCelebDescription.text = data.celebrityDescription
-            binding.rankItemVariance.text = data.rankMovement.toString()
+
+            if (data.rankMovement > 0){
+                binding.rankItemVariance.setCompoundDrawablesWithIntrinsicBounds(R.drawable.popularity_up, 0, 0, 0)
+                binding.rankItemVariance.text = data.rankMovement.toString()
+                binding.rankItemVariance.setTextColor(Color.RED)
+            } else if(data.rankMovement == 0){
+                binding.rankItemVariance.text = "-"
+                binding.rankItemVariance.setTextColor(ContextCompat.getColor(binding.root.context, R.color.imy_chart_gray))
+            } else{
+                var minus = data.rankMovement.toString()
+                minus = minus.replace("-","")
+                binding.rankItemVariance.text = minus
+                binding.rankItemVariance.setCompoundDrawablesWithIntrinsicBounds(R.drawable.popularity_down, 0, 0, 0)
+                binding.rankItemVariance.setTextColor(Color.BLUE)
+            }
 
             val imageResourceId = getImageResourceId(data.celebrityId)
             Glide.with(binding.celebProfile.context)

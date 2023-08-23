@@ -1,6 +1,7 @@
 package com.devjeong.myapplication.community
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.community.model.paging.CommentPagingSourceFactory
@@ -31,7 +33,6 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
         this@CommunityChatActivity.viewModel = viewModel
 
         inputMethodManager = this@CommunityChatActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
         communityId = intent.getIntExtra("communityId", -1)
         if (communityId != -1) {
             viewModel.searchPost(communityId)
@@ -40,6 +41,13 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
         binding.communityChatRv.adapter = communityPagingAdapter
         binding.communityChatRv.layoutManager = LinearLayoutManager(this@CommunityChatActivity, LinearLayoutManager.VERTICAL,false)
         //binding.communityChatRv.scrollToPosition(0)
+
+        val imageResourceId = getImageResourceId(communityId)
+        Glide.with(binding.celebProfile.context)
+            .load(imageResourceId)
+            .placeholder(R.drawable.baseline_person_24)
+            .error(R.drawable.baseline_person_24)
+            .into(binding.celebProfile)
 
         binding.btnSend.setOnClickListener {
             onCommentSubmitClicked()
@@ -61,6 +69,20 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
                 communityPagingAdapter.refresh()
             }
             binding.etMessage.text = null
+        }
+    }
+
+    private fun getImageResourceId(id: Int): Int {
+        return when (id) {
+            1 -> R.drawable.jeongguk
+            2 -> R.drawable.chaeunwoo
+            3 -> R.drawable.vwe
+            4 -> R.drawable.sugar
+            5 -> R.drawable.yeji
+            6 -> R.drawable.yuna
+            7 -> R.drawable.kyunglee
+            8 -> R.drawable.hani
+            else -> R.drawable.daniel
         }
     }
 }
