@@ -83,7 +83,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tv2">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/celebChatBtn"
+                android:id="@+id/celebChatBtnLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -94,6 +94,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/communityBtn">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/celebChatBtn"
                     android:src="@drawable/chat_bot_btn"
                     android:backgroundTint="@color/white"
                     android:layout_width="78dp"
@@ -116,7 +117,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/celebChatBtn"
+                app:layout_constraintStart_toEndOf="@+id/celebChatBtnLayout"
                 app:layout_constraintEnd_toStartOf="@+id/audioBookLayout2">
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -174,6 +175,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/bt_rank"
                     android:src="@drawable/rank_btn"
                     android:backgroundTint="@color/white"
                     android:layout_width="78dp"

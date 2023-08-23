@@ -1,16 +1,19 @@
 package com.devjeong.myapplication.main.view
 
+import android.content.Context
 import android.content.Intent
+import android.net.wifi.WifiInfo
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.devjeong.myapplication.R
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.audio.AudioActivity
 import com.devjeong.myapplication.databinding.FragmentHomeBinding
 import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
-import kotlinx.coroutines.launch
 
 
 class HomeFragment
@@ -38,33 +41,30 @@ class HomeFragment
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.selectedCelebName.collect { celebName ->
-                val celebNameRe = when (celebName) {
-                    "CHAEUNWOO" -> "은우"
-                    "JEONGGUK" -> "국"
-                    "VWE" -> "뷔"
-                    "SUGAR" -> "슈가"
-                    "JANGWONYOUNG" -> "원영"
-                    "KIMCHAEWON" -> "채원"
-                    "MINJI" -> "민지"
-                    "HANI" -> "하니"
-                    else -> "리아"
-                }
-
-                if (celebName.isNotEmpty()) {
-                    val message = getString(R.string.welcome_message)
-                    binding.selectCelebName = message
-                }
-
-            }
-        }
+        val celebNum = viewModel.fetchCelebNum(viewModel.selectedCelebName.value)
+        viewModel.performCountRequest(getWifiMacAddress(), celebNum)
+        Log.d("selectedCelebNum", viewModel.selectedCelebNum.value.toString())
 
         binding.audioBookBtn.setOnClickListener{
             val intent = Intent(requireContext(), AudioActivity::class.java)
             intent.putExtra("celebName", viewModel.selectedCelebName.value)
             startActivity(intent)
         }
+
+        binding.celebChatBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment_to_aiChatFragment)
+        }
+
+        binding.btRank.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_rankingFragment)
+        }
+    }
+
+    private fun getWifiMacAddress(): String {
+        val wifiManager = requireContext().applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInfo: WifiInfo = wifiManager.connectionInfo
+        Log.d("wifiInfo", wifiInfo.macAddress)
+        return wifiInfo.macAddress
     }
 
 }

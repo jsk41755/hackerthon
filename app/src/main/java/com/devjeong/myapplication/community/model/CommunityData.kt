@@ -36,4 +36,18 @@ data class CountRequest(
     val from: String,
     val to: Int
 )
+data class RankApiResponse(
+    val eventTime: String,
+    val status: String,
+    val code: Int,
+    val data: List<Rank>
+)
+
+data class Rank(
+    val celebrityId: Int,
+    val rank: Int,
+    val rankMovement: Int,
+    val celebrityDescription: String,
+    val celebrityName: String
+)
 

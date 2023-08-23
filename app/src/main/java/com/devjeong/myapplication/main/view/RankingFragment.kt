@@ -1,60 +1,73 @@
 package com.devjeong.myapplication.main.view
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
+import com.devjeong.myapplication.UtilityBase
+import com.devjeong.myapplication.community.model.Rank
+import com.devjeong.myapplication.databinding.FragmentRankingBinding
+import com.devjeong.myapplication.main.viewmodel.SelectCelebViewModel
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layout.fragment_ranking) {
+    private val viewModel: SelectCelebViewModel by activityViewModels()
+    private lateinit var rankAdapter: RankingAdapter
+    private val rankList: MutableList<Rank> = mutableListOf()
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RankingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class RankingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun FragmentRankingBinding.onCreateView(){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        // Initialize RecyclerView adapter
+        rankAdapter = RankingAdapter(rankList)
+        binding.rvCelebRank.adapter = rankAdapter
+    }
+
+    override fun FragmentRankingBinding.onViewCreated(){
+        binding.rvCelebRank.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = rankAdapter
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ranking, container, false)
-    }
+        viewModel.fetchRankData()
+        settingMyCeleb()
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RankingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RankingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.rankList.collect { newRankList ->
+                rankList.clear()
+                rankList.addAll(newRankList)
+                rankAdapter.notifyDataSetChanged()
             }
+        }
+
+    }
+
+    private fun settingMyCeleb() {
+        viewModel.fetchCelebKor(viewModel.selectedCelebNum.value)
+        binding.celebName = viewModel.selectedCelebKor.value
+
+        val imageResourceId = getImageResourceId(viewModel.selectedCelebNum.value)
+        Glide.with(binding.celebProfile.context)
+            .load(imageResourceId)
+            .placeholder(R.drawable.baseline_person_24)
+            .error(R.drawable.baseline_person_24)
+            .into(binding.celebProfile)
+    }
+
+    private fun getImageResourceId(id: Int): Int {
+        return when (id) {
+            1 -> R.drawable.jeongguk
+            2 -> R.drawable.chaeunwoo
+            3 -> R.drawable.vwe
+            4 -> R.drawable.sugar
+            5 -> R.drawable.yeji
+            6 -> R.drawable.yuna
+            7 -> R.drawable.kyunglee
+            8 -> R.drawable.hani
+            else -> R.drawable.daniel
+        }
     }
 }

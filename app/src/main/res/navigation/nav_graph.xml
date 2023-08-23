@@ -9,7 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.devjeong.myapplication.main.view.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_aiChatFragment"
+            app:destination="@id/aiChatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aiChatFragment"
         android:name="com.devjeong.myapplication.main.view.AiChatFragment"

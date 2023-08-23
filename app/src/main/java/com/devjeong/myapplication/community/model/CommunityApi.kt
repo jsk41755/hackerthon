@@ -28,4 +28,7 @@ interface CommunityApi {
     @Headers("Content-Type: application/json")
     @POST("/api/celebrity/count")
     fun getCount(@Body request: CountRequest): Call<Unit>  // Unit으로 선언하여 응답을 받지 않음
+
+    @GET("/api/rank")
+    suspend fun getRank(): Response<RankApiResponse>
 }
