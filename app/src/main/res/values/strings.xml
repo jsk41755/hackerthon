@@ -5,5 +5,5 @@
     <string name="other_celeb2">참여율이 높을 수록 셀럽의 순위가 올라 가요!</string>
 
     <string name="welcome_message">은우바라기님 안녕하세요,\n셀럽과의 하루를 시작해 볼까요?</string>
-    <string name="helloBotMessage">안녕 나는 %s야 ㅎㅎ 반가워 :)</string>
+    <string name="helloBotMessage">안녕 나는 %s야! 반가워 :)</string>
 </resources>
