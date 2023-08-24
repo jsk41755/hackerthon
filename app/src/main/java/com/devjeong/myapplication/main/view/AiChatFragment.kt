@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
@@ -75,8 +76,6 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestPermission()
-        speaker = "vyuna"
-
     }
 
     private fun requestPermission() {
@@ -91,6 +90,12 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
     }
 
     override fun FragmentAiChatBinding.onViewCreated(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.selectedCelebName.collect { selectedCelebName ->
+                speaker = getSpeakerId(selectedCelebName)
+            }
+        }
+
         recyclerView()
         clickEvents()
 
@@ -111,13 +116,6 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             speechRecognizer.startListening(intent)                         // 듣기 시작
         }
 
-        coroutineScope.launch {
-            val helloBotMessage = resources.getString(R.string.helloBotMessage)
-            val timeStamp = Time.timeStamp()
-            customBotMessage(helloBotMessage)
-            delay(1000)
-        }
-
         val imageResourceId = getImageResourceId(viewModel.selectedCelebNum.value)
         Glide.with(binding.celebProfile.context)
             .load(imageResourceId)
@@ -130,6 +128,15 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
         viewModel.fetchCelebKor(viewModel.selectedCelebNum.value)
         val celebName = viewModel.selectedCelebKor.value
         mainActivity?.titleTxt?.text = "AI ${celebName}"
+
+        coroutineScope.launch {
+            val helloBotMessage = String.format(resources.getString(R.string.helloBotMessage),
+                viewModel.selectedCelebKor.value
+            )
+            val timeStamp = Time.timeStamp()
+            customBotMessage(helloBotMessage)
+            delay(1000)
+        }
     }
 
     private fun getImageResourceId(id: Int): Int {
@@ -146,6 +153,20 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
         }
     }
 
+    private fun getSpeakerId(id: String): String {
+        return when (id) {
+            "CHAEUNWOO" -> "neunwoo"
+            "JEONGGUK" -> "nraewon" //래원
+            "VWE" -> "njoonyoung" //준영
+            "SUGAR" -> "nseungpyo" //승표
+            "YEJI" -> "nyeji"
+            "YUNA" -> "vyuna"
+            "KYUNGLEE" -> "nes_c_hyeri"//혜리
+            "HANI" -> "nmeow"
+            else -> "nshasha" //샤샤
+        }
+    }
+
     private fun clickEvents() {
         //Send a message
         binding.btnSend.setOnClickListener {
@@ -156,7 +177,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             CoroutineScope(Dispatchers.Main).launch {
                 delay(100)
 
-                withContext(Dispatchers.IO) {
+                withContext(Dispatchers.Main) {
                     binding.aiChatRecyclerView.scrollToPosition(adapter.itemCount - 1)
                 }
             }
@@ -251,7 +272,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             // Fetch audio URL using fetchAudioUrl function
             val audioUrl = fetchAudioUrl(requireContext(), message, speaker)
             var filePath: String? = null
-
+            Log.d("message", message)
             val mediaItem = MediaItem.fromUri(Uri.fromFile(File(audioUrl)))
 
             val mediaSource = ProgressiveMediaSource.Factory(
