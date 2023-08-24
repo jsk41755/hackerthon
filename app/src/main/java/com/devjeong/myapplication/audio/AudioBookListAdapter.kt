@@ -50,14 +50,15 @@ class AudioBookListAdapter (
             when(book.title){
                 "마지막 잎새" -> binding.audioBookImg.setImageResource(R.drawable.last_leaf)
                 "메밀꽃 필 무렵" -> binding.audioBookImg.setImageResource(R.drawable.buckwheat_flowers)
-                "들사람" -> binding.audioBookImg.setImageResource(R.drawable.wild_man)
+                "들사람 얼" -> binding.audioBookImg.setImageResource(R.drawable.wild_man)
                 "나의 사랑 한글날" -> binding.audioBookImg.setImageResource(R.drawable.hangul)
                 "별" -> binding.audioBookImg.setImageResource(R.drawable.star_book)
                 "부자와 당나귀" -> binding.audioBookImg.setImageResource(R.drawable.rich_and_the_donkey)
                 "소나기" -> binding.audioBookImg.setImageResource(R.drawable.shower)
                 "어린 왕자" -> binding.audioBookImg.setImageResource(R.drawable.little_prince)
                 "청산도" -> binding.audioBookImg.setImageResource(R.drawable.degree_of_liquidation)
-
+                "동백꽃" -> binding.audioBookImg.setImageResource(R.drawable.camellia_flower)
+                "별 헤는 밤" -> binding.audioBookImg.setImageResource(R.drawable.night_of_counting_the_stars)
             }
             binding.executePendingBindings()
         }

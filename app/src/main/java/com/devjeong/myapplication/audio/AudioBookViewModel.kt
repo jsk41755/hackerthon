@@ -30,6 +30,10 @@ class AudioBookViewModel :  ViewModel() {
     val selectedBookId: StateFlow<Int>
         get() = _selectedBookId
 
+    private val _selectedBookName = MutableStateFlow<String>("")
+    val selectedBookName: StateFlow<String>
+        get() = _selectedBookName
+
     suspend fun fetchBooks() {
         val response = AudioBookClient.audioBookApi.getBooks()
         if (response.isSuccessful) {
@@ -58,6 +62,7 @@ class AudioBookViewModel :  ViewModel() {
                 if (response.isSuccessful) {
                     val apiResponse = response.body() as BookAudioApiResponse
                     _audioBookScript.value = listOf(apiResponse.data)
+                    _selectedBookName.value = apiResponse.data.title
                 } else {
                     // Handle error
                 }
