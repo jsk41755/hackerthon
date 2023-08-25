@@ -44,14 +44,14 @@ class AudioBookFragment
             viewModel.celebName.collect{
                 speaker = when (it) {
                     "CHAEUNWOO" -> "neunwoo"
-                    "JEONGGUK" -> "njonghyun"
-                    "VWE" -> "njoonyoung"
-                    "SUGAR" -> "nkyungtae"
-                    "JANGWONYOUNG" -> "nyejin"
-                    "KIMCHAEWON" -> "mijin"
-                    "MINJI" -> "mijin"
-                    "HANI" -> "nyejin"
-                    else -> "vyuna"
+                    "JEONGGUK" -> "nraewon" //래원
+                    "VWE" -> "njoonyoung" //준영
+                    "SUGAR" -> "nseungpyo" //승표
+                    "YEJI" -> "nyeji"
+                    "YUNA" -> "vyuna"
+                    "IMYONGWOONG" -> "ndonghyun"//혜리
+                    "HANI" -> "nmeow"
+                    else -> "nshasha" //샤샤
                 }
             }
         }

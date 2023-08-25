@@ -164,7 +164,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             "SUGAR" -> "nseungpyo" //승표
             "YEJI" -> "nyeji"
             "YUNA" -> "vyuna"
-            "KYUNGLEE" -> "nes_c_hyeri"//혜리
+            "IMYONGWOONG" -> "ndonghyun"//혜리
             "HANI" -> "nmeow"
             else -> "nshasha" //샤샤
         }

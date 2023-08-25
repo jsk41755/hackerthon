@@ -24,7 +24,7 @@ fun fetchAudioUrl(context: Context, text: String, speaker: String) : String{
         connection.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId)
         connection.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret)
         // POST 요청 설정
-        var postParams = "speaker=$speaker&volume=0&speed=4&pitch=0&format=wav&text=$encodedText"
+        var postParams = "speaker=$speaker&volume=0&speed=-1&pitch=0&pitch=0&format=wav&text=$encodedText"
         if(speaker == "vyuna" || speaker == "vara"){
             postParams = "$postParams&emotion=2"
         }
