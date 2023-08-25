@@ -1,13 +1,11 @@
 package com.devjeong.myapplication.main.view
 
 import android.graphics.Color
-import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.devjeong.myapplication.UtilityBase
 import com.devjeong.myapplication.R
@@ -43,7 +41,7 @@ class SelectCelebFragment
             SelectCelebModel.SUGAR to binding.selectCelebSugar,
             SelectCelebModel.YEJI to binding.selectCelebYeji,
             SelectCelebModel.YUNA to binding.selectCelebYuna,
-            SelectCelebModel.KYUNGLEE to binding.selectCelebKyunglee,
+            SelectCelebModel.IMYONGWOONG to binding.selectCelebKyunglee,
             SelectCelebModel.HANI to binding.selectCelebHani,
             SelectCelebModel.DANIEL to binding.selectCelebDaniel
         )
@@ -69,7 +67,7 @@ class SelectCelebFragment
             SelectCelebModel.SUGAR -> binding.selectCelebSugar
             SelectCelebModel.YEJI -> binding.selectCelebYeji
             SelectCelebModel.YUNA -> binding.selectCelebYuna
-            SelectCelebModel.KYUNGLEE -> binding.selectCelebKyunglee
+            SelectCelebModel.IMYONGWOONG -> binding.selectCelebKyunglee
             SelectCelebModel.HANI -> binding.selectCelebHani
             SelectCelebModel.DANIEL -> binding.selectCelebDaniel
         }

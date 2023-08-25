@@ -43,7 +43,6 @@
                 android:text="@{userQuestion}"
                 android:fontFamily="@font/pretendard"
                 android:hint="안녕하세요"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -78,7 +77,6 @@
                 android:text="@{aiAnswer}"
                 android:fontFamily="@font/pretendard"
                 android:textColor="@color/myCelebTextBlack"
-                android:textStyle="bold"
                 android:textSize="14sp"
                 android:hint="반갑습니다."
                 android:visibility="visible" />

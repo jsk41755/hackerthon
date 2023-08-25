@@ -80,7 +80,7 @@ class CommunityChatActivity : UtilityBase.BaseAppCompatActivity<ActivityCommunit
             4 -> R.drawable.sugar
             5 -> R.drawable.yeji
             6 -> R.drawable.yuna
-            7 -> R.drawable.kyunglee
+            7 -> R.drawable.imyoungwoong
             8 -> R.drawable.hani
             else -> R.drawable.daniel
         }

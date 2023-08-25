@@ -199,10 +199,10 @@
                         android:id="@+id/selectCelebKyunglee"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/kyunglee"/>
+                        android:src="@drawable/imyoungwoong"/>
 
                     <TextView
-                        android:text="경리"
+                        android:text="임영웅"
                         android:fontFamily="@font/pretendard_medium"
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"

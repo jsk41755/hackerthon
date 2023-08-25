@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2023년 8월 24일 목요일"
+                    android:textSize="11sp"
                     android:fontFamily="@font/pretendard_medium"
                     android:textColor="@color/myCelebTextHint"
                     android:drawableStart="@drawable/calender"

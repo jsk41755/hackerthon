@@ -96,14 +96,14 @@ class HomeFragment
 
     private fun init() {
         val popularRecyclerView: RecyclerView = binding.homePopularRecyclerView
-        val text = "*은우와 가장 어울리는 책은?"
+        val text = "*영웅과 가장 어울리는 책은?"
         val text2 = "*나의 셀럽에겐 무슨 향이 날까?"
         val text3 = "*지금 가장 핫한 셀럽은?"
 
         val itemList = mutableListOf<HomeBannerData>(
-            HomeBannerData(R.drawable.popular_item1, text, "나만의 셀럽의 목소리와 가장\n맞는 책을 추천해요"),
-            HomeBannerData(R.drawable.perfume, text2, "나만의 셀럽의 향기와 가장\n어울리는 상품을 추천해요"),
-            HomeBannerData(R.drawable.popular_jeongguk, text3, "금주의 가장 핫한 커뮤니티에\n참여해 보세요"),
+            HomeBannerData(R.drawable.popular_item1, text, "나만의 셀럽의 목소리와 가장 맞는\n 책을 추천해요"),
+            HomeBannerData(R.drawable.perfume, text2, "나만의 셀럽의 향기와 가장 어울리는\n상품을 추천해요"),
+            HomeBannerData(R.drawable.popular_jeongguk, text3, "금주의 가장 핫한 커뮤니티에 참여해\n보세요"),
         )
 
         popularRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

@@ -38,7 +38,6 @@ class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHold
 
     inner class CommunityViewHolder(private val binding: CommunityItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.invoke(communityDataList[adapterPosition].communityId)
@@ -47,6 +46,7 @@ class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHold
         fun bind(data: CommunityData) {
             binding.celebName = data.celebrityName
             binding.celebNameTag = data.description
+           binding.celebNameContent = getTagResourceId(data.communityId)
 
             val imageResourceId = getImageResourceId(data.communityId)
             Glide.with(binding.communityCelebIv.context)
@@ -59,6 +59,20 @@ class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHold
         }
     }
 
+    private fun getTagResourceId(id: Int): String {
+        return when (id) {
+            1 -> "#국이 #덕질에 진심"
+            2 -> "#은우 사랑해 #존잘"
+            3 -> "#BTS #귀공자"
+            4 -> "#귀요미 #So스윗"
+            5 -> "#여우 #잇지"
+            6 -> "#세젤예 #ENFP"
+            7 -> "#트로트신강림 #최고인기"
+            8 -> "#허니보이스"
+            else -> "#비타민 #뉴진스"
+        }
+    }
+
     private fun getImageResourceId(id: Int): Int {
         return when (id) {
             1 -> R.drawable.jeongguk
@@ -67,7 +81,7 @@ class CommunityAdapter : RecyclerView.Adapter<CommunityAdapter.CommunityViewHold
             4 -> R.drawable.sugar
             5 -> R.drawable.yeji
             6 -> R.drawable.yuna
-            7 -> R.drawable.kyunglee
+            7 -> R.drawable.imyoungwoong
             8 -> R.drawable.hani
             else -> R.drawable.daniel
         }

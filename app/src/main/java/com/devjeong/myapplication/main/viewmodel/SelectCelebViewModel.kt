@@ -75,7 +75,7 @@ class SelectCelebViewModel : ViewModel() {
                 "SUGAR" -> 4
                 "YEJI" -> 5
                 "YUNA" -> 6
-                "KYUNGLEE" -> 7
+                "IMYONGWOONG" -> 7
                 "HANI" -> 8
                 else -> 9
             }
@@ -93,7 +93,7 @@ class SelectCelebViewModel : ViewModel() {
                 4 -> "슈가"
                 5 -> "예지"
                 6 -> "유나"
-                7 -> "경리"
+                7 -> "임영웅"
                 8 -> "팜하니"
                 else -> "다니엘"
             }

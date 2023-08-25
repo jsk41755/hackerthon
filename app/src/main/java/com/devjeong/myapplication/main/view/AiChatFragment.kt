@@ -76,6 +76,9 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestPermission()
+
+        val mainActivity = requireActivity() as? MainActivity
+        mainActivity?.hideProfileButton()
     }
 
     private fun requestPermission() {
@@ -147,7 +150,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             4 -> R.drawable.sugar
             5 -> R.drawable.yeji
             6 -> R.drawable.yuna
-            7 -> R.drawable.kyunglee
+            7 -> R.drawable.imyoungwoong
             8 -> R.drawable.hani
             else -> R.drawable.daniel
         }

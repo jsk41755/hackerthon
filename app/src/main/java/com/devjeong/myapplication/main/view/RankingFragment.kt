@@ -1,6 +1,7 @@
 package com.devjeong.myapplication.main.view
 
 import android.graphics.Color
+import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -23,6 +24,13 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
     private val viewModel: SelectCelebViewModel by activityViewModels()
     private lateinit var rankAdapter: RankingAdapter
     private val rankList: MutableList<Rank> = mutableListOf()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val mainActivity = requireActivity() as? MainActivity
+        mainActivity?.hideProfileButton()
+    }
 
     override fun FragmentRankingBinding.onCreateView(){
 
@@ -109,7 +117,7 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
             4 -> R.drawable.sugar
             5 -> R.drawable.yeji
             6 -> R.drawable.yuna
-            7 -> R.drawable.kyunglee
+            7 -> R.drawable.imyoungwoong
             8 -> R.drawable.hani
             else -> R.drawable.daniel
         }

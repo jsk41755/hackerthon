@@ -76,7 +76,8 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/celebNameTagTv"
-                android:text="#국이 덕질에 진심인 사람들의 모임"
+                android:hint="#국이 덕질에 진심인 사람들의 모임"
+                android:text="@{celebNameContent}"
                 android:maxLines="1"
                 android:fontFamily="@font/pretendard_medium"
                 android:textColor="@color/myCelebTextHint"

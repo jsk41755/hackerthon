@@ -52,7 +52,7 @@
                 android:id="@+id/selectCelebNameTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="은우바라기님 안녕하세요,\n셀럽과의 하루를 시작해볼까요?"
+                android:text="영웅바라기님 안녕하세요,\n셀럽과의 하루를 시작해볼까요?"
                 android:fontFamily="@font/pretendard_medium"
                 android:textStyle="bold"
                 android:textColor="@color/white"

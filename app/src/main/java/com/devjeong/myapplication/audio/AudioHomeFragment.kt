@@ -46,7 +46,7 @@ class AudioHomeFragment
         binding.audioHomeTxt3.text = spannableString
 
         spannableString2.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.audioHomeTxt1.text = spannableString
+        binding.audioHomeTxt1.text = spannableString2
 
         init()
         setUpTransformer()
