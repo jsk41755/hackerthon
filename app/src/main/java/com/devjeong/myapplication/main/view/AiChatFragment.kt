@@ -61,6 +61,9 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
     private lateinit var speaker : String
     private var selectNum : Int = 2
 
+    private val messageString = arrayOf<String>("하나","둘","셋")
+    private var messageCount: Int = 0
+
     override fun onStart() {
         super.onStart()
 
@@ -318,6 +321,7 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
             adapter.insertMessage(Message(message, SEND_ID, timeStamp, isLiked=false))
             binding.aiChatRecyclerView.scrollToPosition(adapter.itemCount - 1)
 
+
             botResponse(message)
         }
     }
@@ -407,8 +411,9 @@ class AiChatFragment : UtilityBase.BaseFragment<FragmentAiChatBinding>(R.layout.
                 val endTime = System.currentTimeMillis()
                 val duration = endTime - startTime
                 Log.v("응답 속도", "${duration}")
-
-                chatresponse= res!!.answer
+                chatresponse = messageString[messageCount]
+                messageCount++
+                //chatresponse= res!!.answer 이전 챗봇 구현
             }.getOrDefault(false)
         }
     }
