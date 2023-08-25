@@ -1,28 +1,23 @@
 package com.devjeong.myapplication.main.view
 
-import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.devjeong.myapplication.R
-import com.devjeong.myapplication.community.model.CommunityData
 import com.devjeong.myapplication.community.model.Rank
-import com.devjeong.myapplication.databinding.CommunityItemBinding
-import com.devjeong.myapplication.databinding.FragmentRankingBinding
 import com.devjeong.myapplication.databinding.RankItemBinding
 
-class RankingAdapter (private val rankDataList: List<Rank>) : RecyclerView.Adapter<RankingAdapter.RankViewHolder>() {
+class RankingAdapter(private val rankDataList: List<Rank>, private val rankPointList: Array<String>) : RecyclerView.Adapter<RankingAdapter.RankViewHolder>() {
 
     inner class RankViewHolder(private val binding: RankItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Rank) {
             binding.rankItemNum.text = data.rank.toString()
             binding.tvCelebName.text = data.celebrityName
             binding.tvCelebDescription.text = data.celebrityDescription
+            binding.rankItemTrash.text = rankPointList[data.celebrityId-1]
 
             if (data.rankMovement > 0){
                 binding.rankItemVariance.setCompoundDrawablesWithIntrinsicBounds(R.drawable.popularity_up, 0, 0, 0)

@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -24,6 +21,7 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
     private val viewModel: SelectCelebViewModel by activityViewModels()
     private lateinit var rankAdapter: RankingAdapter
     private val rankList: MutableList<Rank> = mutableListOf()
+    private val rankPointList = arrayOf<String>("2024K","3011K","1704K","2290K","1104K", "3802K", "2404K", "4121K","2590K")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +33,7 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
     override fun FragmentRankingBinding.onCreateView(){
 
         // Initialize RecyclerView adapter
-        rankAdapter = RankingAdapter(rankList)
+        rankAdapter = RankingAdapter(rankList, rankPointList)
         binding.rvCelebRank.adapter = rankAdapter
     }
 
@@ -99,6 +97,7 @@ class RankingFragment : UtilityBase.BaseFragment<FragmentRankingBinding>(R.layou
     private fun settingMyCeleb() {
         viewModel.fetchCelebKor(viewModel.selectedCelebNum.value)
         binding.celebName = viewModel.selectedCelebKor.value
+        binding.myCelebPoint.text = rankPointList[viewModel.selectedCelebNum.value-1]
 
         val imageResourceId = getImageResourceId(viewModel.selectedCelebNum.value)
         Glide.with(binding.celebProfile.context)
